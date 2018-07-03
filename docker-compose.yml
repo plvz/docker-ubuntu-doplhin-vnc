@@ -1,0 +1,12 @@
+version: "2.0"
+services:
+  xserver:
+    image: p2lvoizin/docker-ubuntu-doplhin-vnc
+    ports:
+      - 5900:5900
+    volumes:
+      - /home/p2l/Games:/Games/
+    environment:
+      VNC_PASSWORD: yourPW
+      XFB_SCREEN: 1280x800x24
+      XFB_SCREEN_DPI: 150
