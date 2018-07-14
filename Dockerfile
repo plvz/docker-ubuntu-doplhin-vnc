@@ -8,6 +8,17 @@ RUN  apt-get update && apt-get install -y --no-install-recommends --allow-unauth
 RUN  add-apt-repository ppa:dolphin-emu/ppa -y
 RUN  apt-get update && apt-get install -y dolphin-emu
 
+
+RUN apt-get update && apt-get install --yes --no-install-recommends \
+    ca-certificates \
+  && echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" \
+    | tee /etc/apt/sources.list.d/gcsfuse.list \
+  && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+  && apt-get update \
+  && apt-get install --yes gcsfuse \
+&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+
 RUN export myuser=root && \
     export mypasswd=mysecret && \
     mkdir /.vnc && \
