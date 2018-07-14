@@ -9,6 +9,8 @@ RUN  apt-get update && apt-get install -y --no-install-recommends --allow-unauth
 RUN  add-apt-repository ppa:dolphin-emu/ppa -y
 RUN  apt-get update && apt-get install -y dolphin-emu
 
+#Empty folder for Games where the Google bucket will be mounted
+RUN mkdir /Games
 
 RUN apt-get update && apt-get install --yes --no-install-recommends \
     ca-certificates \
@@ -44,7 +46,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # create or use the volume depending on how container is run
 # ensure that server and client can access the cookie
-RUN mkdir -p /Xauthority 
+RUN mkdir -p /Xauthority
 VOLUME /Xauthority
 
 
