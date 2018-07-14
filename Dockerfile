@@ -32,17 +32,6 @@ RUN DISPLAY=10.0.2.15:0
 
 
 
-# first create user and group for all the X Window stuff
-# required to do this first so have consistent uid/gid between server and client container
-RUN addgroup --system xusers \
-  && adduser \
-			--home /home/xuser \
-			--disabled-password \
-			--shell /bin/bash \
-			--gecos "user for running X Window stuff" \
-			--ingroup xusers \
-			--quiet \
-			xuser
 
 # Install xvfb as X-Server and x11vnc as VNC-Server
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -55,7 +44,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # create or use the volume depending on how container is run
 # ensure that server and client can access the cookie
-RUN mkdir -p /Xauthority && chown -R xuser:xusers /Xauthority
+RUN mkdir -p /Xauthority && chown  /Xauthority
 VOLUME /Xauthority
 
 
@@ -74,7 +63,6 @@ RUN chmod +x /entrypoint.sh
 
 
 # switch to user and start
-USER xuser
 ENTRYPOINT ["/entrypoint.sh"]
 
 
