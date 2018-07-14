@@ -44,7 +44,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # create or use the volume depending on how container is run
 # ensure that server and client can access the cookie
-RUN mkdir -p /Xauthority && chown  /Xauthority
+RUN mkdir -p /Xauthority
 VOLUME /Xauthority
 
 
