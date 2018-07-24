@@ -1,4 +1,4 @@
-# Firefox over VNC
+# recalbox on VNC server
 #
 # VERSION               0.1
 # DOCKER-VERSION        0.2
